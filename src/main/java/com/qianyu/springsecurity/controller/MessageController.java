@@ -1,5 +1,7 @@
 package com.qianyu.springsecurity.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qianyu.springsecurity.dto.UserDto;
+import com.qianyu.springsecurity.entity.Product;
 import com.qianyu.springsecurity.entity.UserEntity;
+import com.qianyu.springsecurity.service.ProductService;
 import com.qianyu.springsecurity.service.UserService;
 
 
@@ -19,6 +23,9 @@ public class MessageController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ProductService productService;
 	
 	@GetMapping("/welcome")
 	public String welcome() {
@@ -48,6 +55,11 @@ public class MessageController {
 	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	public String welcomeA() {
 		return "Welcome Admin";
+	}
+	
+	@GetMapping("/products")
+	public List<Product> getProducts(){
+		return productService.getAllProducts();
 	}
 	
 
