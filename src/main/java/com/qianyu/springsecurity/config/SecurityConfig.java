@@ -59,13 +59,6 @@ public class SecurityConfig {
 
 		return http.httpBasic(Customizer.withDefaults()).build();
 
-
-
-
-
-
-
-
 	}
 
 	@Bean
