@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.qianyu.springsecurity.dto.CustomUserDetails;
+import com.qianyu.springsecurity.config.CustomUserDetails;
 import com.qianyu.springsecurity.entity.UserEntity;
 import com.qianyu.springsecurity.repository.UserRepository;
 

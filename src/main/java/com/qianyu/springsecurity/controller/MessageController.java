@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.qianyu.springsecurity.dto.UserDto;
 import com.qianyu.springsecurity.entity.UserEntity;
 import com.qianyu.springsecurity.service.UserService;
 
@@ -25,13 +26,13 @@ public class MessageController {
 	}
 	
 	@PostMapping("/register")
-	public String register(@RequestBody UserEntity user) {
+	public UserDto register(@RequestBody UserEntity user) {
 		user.setRoles("ROLE_USER");
 		return userService.addUser(user);
 	}
 	
 	@PostMapping("/registeradmin")
-	public String registerAdmin(@RequestBody UserEntity user) {
+	public UserDto registerAdmin(@RequestBody UserEntity user) {
 		user.setRoles("ROLE_ADMIN");
 		return userService.addUser(user);
 	}

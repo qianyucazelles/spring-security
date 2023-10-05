@@ -1,4 +1,4 @@
-package com.qianyu.springsecurity.dto;
+package com.qianyu.springsecurity.config;
 
 import java.util.Arrays;
 import java.util.Collection;
