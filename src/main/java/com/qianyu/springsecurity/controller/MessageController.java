@@ -3,6 +3,7 @@ package com.qianyu.springsecurity.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.qianyu.springsecurity.dto.LoginDto;
 import com.qianyu.springsecurity.dto.UserDto;
 import com.qianyu.springsecurity.entity.Product;
 import com.qianyu.springsecurity.entity.UserEntity;
@@ -28,22 +30,10 @@ public class MessageController {
 	private ProductService productService;
 	
 	@GetMapping("/welcome")
-	public String welcome() {
-		return "Welcome";
+	public ResponseEntity<String> welcome() {
+		return ResponseEntity.ok("Welcome");
 	}
-	
-	@PostMapping("/register")
-	public UserDto register(@RequestBody UserEntity user) {
-		user.setRoles("ROLE_USER");
-		return userService.addUser(user);
-	}
-	
-	@PostMapping("/registeradmin")
-	public UserDto registerAdmin(@RequestBody UserEntity user) {
-		user.setRoles("ROLE_ADMIN");
-		return userService.addUser(user);
-	}
-	
+		
 	
 	@GetMapping("/user")
 	@PreAuthorize("hasAuthority('ROLE_USER')")
@@ -58,6 +48,7 @@ public class MessageController {
 	}
 	
 	@GetMapping("/products")
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	public List<Product> getProducts(){
 		return productService.getAllProducts();
 	}
